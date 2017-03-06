@@ -1,0 +1,27 @@
+'use strict';
+
+angular.module('ds.wishlist')
+    .factory('WishlistSvc', ['WishlistREST',
+        function(WishlistREST){
+            return {
+                createWishlist: function (newWishlist) {
+                    WishlistREST.Wishlist.all('wishlists').post(newWishlist);
+                }
+            };
+
+            return {
+                getWishlist: function (specifiedWishlist) {
+                    var currentWishlist = WishlistREST.Wishlist.all('wishlists').get(specifiedWishlist);
+
+                    currentWishlist.then(function (response) {
+                        if (response.headers) {
+                            GlobalData.orders.meta.total = parseInt(response.headers[settings.headers.paging.total], 10) || 0;
+                        }
+                    });
+                    return currentWishlist;
+                }
+            };
+        }
+
+    ]);
+

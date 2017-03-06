@@ -12,14 +12,6 @@
 
 'use strict';
 
-angular.module('ds.account')
-    .directive('customerDetails', function () {
-        return {
-            restrict: 'E',
-            controller: 'CustomerDetailsCtrl',
-            templateUrl: 'js/app/account/directives/customer-details/customer-details.html',
-            scope: {
-                account: '='
-            }
-        };
-    });
+angular.module('ds.account', [
+    'ds.auth'
+]);

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * [y] hybris Platform
  *
  * Copyright (c) 2000-2015 hybris AG

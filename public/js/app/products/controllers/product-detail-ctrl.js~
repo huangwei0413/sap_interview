@@ -43,8 +43,6 @@ angular.module('ds.products')
             $scope.breadcrumbData = angular.copy($scope.category);
 
             $scope.taxConfiguration = GlobalData.getCurrentTaxConfiguration();
-            
-            //$scope.wishlistId = !!account ? account.customerNumber : null;
 
             /*
              we need to shorten the tax label if it contains more than 60 characters, and give users the option of
@@ -162,10 +160,20 @@ angular.module('ds.products')
 
             $scope.addToWishlist = function () {
                 var newWishlist = {
-                    product: $scope.product.id,
-                    amount: $scope.productDetailQty,
-                    note: '',
-                    createdAt: ''
+                    id: 'defaultWishlistId',
+                    url: '',
+                    owner: 'wishlistOwner@hybris.com',
+                    title: 'defaultWishlistTitle',
+                    description: '',
+                    createdAt: '',
+                    items: [
+                        {
+                            product: $scope.product.product.id,
+                            amount: $scope.productDetailQty,
+                            note: '',
+                            createdAt: ''
+                        }
+                    ]
                 };
                 WishlistSvc.createWishlist(newWishlist);
                 Notification.success({message: $scope.productDetailQty + ' product(s) added to Wishlist', delay: 3000});

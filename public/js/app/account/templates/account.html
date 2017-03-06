@@ -107,4 +107,68 @@
 
   </section>
 
+  <section class="mediumgray" ng-cloak>
+    <div class="container-fluid">
+      <div class="section-headline clearfix">
+        <h2>{{'Wishlist' | translate}}</h2>
+      </div>
+
+      <div class="hidden-md hidden-lg row">
+        <div ng-repeat="m_wishlistItem in wishlist" class="col-sm-4 col-xs-12">
+            <div class="cardStatusIdentifier pull-left" ></div>
+            <div class="panel">
+                <div class="panel-body " >
+                    <div class="row">
+                        <div class="col-sm-8 col-xs-8 leftCol">
+                            <p>
+                                <strong>{{'DATE'|translate}}</strong><br/>
+                                {{m_wishlistItem.createdAt | date: 'medium'}}
+                            </p>
+                            <p>
+                                <strong>{{'PRODUCT'|translate}}</strong><br/>
+                                {{m_wishlistItem.product}}
+                            </p>
+                            <p>
+                                <strong>{{'PRICE'|translate}}</strong><br/>
+                                {{m_wishlistItem.note}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+
+      <div ng-if="wishlist.length"  class="table-responsive hidden-sm hidden-xs">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>{{'DATE' | translate}}</th>
+              <th>{{'PRODUCT' | translate}}</th>
+              <th>{{'PRICE' | translate}}</ht>
+            </tr>
+          </thead>
+          <tbody>
+              <tr ng-repeat="wishlistItem in wishlist">
+                  <td>{{wishlistItem.createdAt | date: 'medium'}}</td>
+                  <td>{{wishlistItem.product}}</td>
+                  <td>{{wishlistItem.note}}</td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p ng-if="!wishlist.length">{{'NO_WISHLIST' | translate}}</p>
+
+      
+      <div class="text-center" >
+        <button class="btn btn-link" ng-show="showWishlistButton" ng-click="showWishlist()">{{'SHOW_ALL' | translate}} <span class="glyphicon glyphicon-chevron-down"/></button>
+        <button class="btn btn-link" ng-show="!showWishlistButton" ng-click="hideWishlist()">{{'HIDE_ALL' | translate}} <span class="glyphicon glyphicon-chevron-down"/></button>
+      </div>
+      
+      
+    </div>
+
+  </section>
+
 </div>

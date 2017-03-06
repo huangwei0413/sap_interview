@@ -13,9 +13,9 @@
 
 angular.module('ds.account')
 
-    .controller('AccountCtrl', ['$scope', 'addresses', 'account', 'orders', 'OrderListSvc', 'AccountSvc', '$uibModal', 'GlobalData', '$translate',
+    .controller('AccountCtrl', ['$scope', 'WishlistSvc', 'addresses', 'account', 'orders', 'OrderListSvc', 'AccountSvc', '$uibModal', 'GlobalData', '$translate',
 
-        function ($scope, addresses, account, orders, OrderListSvc, AccountSvc, $uibModal, GlobalData, $translate) {
+        function ($scope, WishlistSvc, addresses, account, orders, OrderListSvc, AccountSvc, $uibModal, GlobalData, $translate) {
 
             var self = this;
             self.allOrdersLoaded = false;
@@ -45,6 +45,12 @@ angular.module('ds.account')
             $scope.showAllOrdersButton = true;
             $scope.showOrderButtons = ($scope.orders.length >= $scope.showOrdersDefault);
             $scope.showOrdersFilter = $scope.showOrdersDefault;
+            
+            // Load or hide wishlist
+            $scope.showWishlistButton = true;
+            $scope.wishlist = [];
+            $scope.wishlistCache = [];
+            $scope.isWishlistLatest = false;
 
             var extractServerSideErrors = function (response) {
                 var errors = [];
@@ -203,6 +209,28 @@ angular.module('ds.account')
                     });
                 }
             };
+            
+            
+            $scope.showWishlist = function () {
+                $scope.showWishlistButton = !$scope.showWishlistButton;
+                if ($scope.isWishlistLatest) {
+                    $scope.wishlist = $scope.wishlistCache;
+                } else {
+                    WishlistSvc.getWishlist().then(function (wishlist) {
+                        $scope.wishlist = wishlist;
+                        $scope.wishlistCache = wishlist;
+                        $scope.isWishlistLatest = true;
+                    });
+                }
+                
+            };
+            
+            
+            $scope.hideWishlist = function () {
+                $scope.showWishlistButton = !$scope.showWishlistButton;
+                $scope.wishlist = [];
+            };
+            
 
             $scope.showAllAddresses = function () {
                 $scope.showAllAddressButton = !$scope.showAllAddressButton;

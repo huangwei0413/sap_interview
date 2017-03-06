@@ -13,5 +13,6 @@
 'use strict';
 
 angular.module('ds.account', [
-    'ds.auth'
+    'ds.auth',
+    'ds.wishlist'
 ]);

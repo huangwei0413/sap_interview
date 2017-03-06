@@ -88,7 +88,7 @@
 
                                 <!-- add to wishlist -->
                                 <div class="col-md-8 col-md-offset-2">
-                                    <button id="add-to-wishlist-button" type="button" class="btn btn-primary btn-block buyButton" ng-click="addToWishlist()">ADD TO WISHLIST</button>
+                                    <button id="add-to-wishlist-button" type="button" class="btn btn-primary btn-block addToWishlistButton" ng-click="addToWishlist()">ADD TO WISHLIST</button>
                                 </div>
 
                                 <!-- product fees -->
